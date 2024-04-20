@@ -8,7 +8,7 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.fincance_dock</groupId>
+	<groupId>com.finance_dock</groupId>
 	<artifactId>finance_dock</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>finance_dock</name>

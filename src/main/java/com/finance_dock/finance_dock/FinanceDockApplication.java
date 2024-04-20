@@ -1,4 +1,4 @@
-package com.fincance_dock.finance_dock;
+package com.finance_dock.finance_dock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
