@@ -1,15 +1,15 @@
 package com.finance_dock.finance_dock.models;
 
-public class TipoSaida {
+public class TipoMovimentacao {
     Long id;
     String nome;
 
-    public TipoSaida(Long id, String nome) {
+    public TipoMovimentacao(Long id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public TipoSaida() {
+    public TipoMovimentacao() {
     }
 
     public Long getId() {

@@ -7,17 +7,17 @@ public class Saida {
     private String descricao;
     private Date vencimento;
     private double valor;
-    private TipoSaida tipoSaida;
+    private TipoMovimentacao tipoMovimentacao;
 
     public Saida() {
     }
 
-    public Saida(Long id, String descricao, Date vencimento, double valor, TipoSaida tipoSaida) {
+    public Saida(Long id, String descricao, Date vencimento, double valor, TipoMovimentacao tipoMovimentacao) {
         this.id = id;
         this.descricao = descricao;
         this.vencimento = vencimento;
         this.valor = valor;
-        this.tipoSaida = tipoSaida;
+        this.tipoMovimentacao = tipoMovimentacao;
     }
 
     public Long getId() {
@@ -52,12 +52,12 @@ public class Saida {
         this.valor = valor;
     }
 
-    public TipoSaida getTipoSaida() {
-        return tipoSaida;
+    public TipoMovimentacao getTipoMovimentacao() {
+        return tipoMovimentacao;
     }
 
-    public void setTipoSaida(TipoSaida tipoSaida) {
-        this.tipoSaida = tipoSaida;
+    public void setTipoMovimentacao(TipoMovimentacao tipoMovimentacao) {
+        this.tipoMovimentacao = tipoMovimentacao;
     }
 
 }
