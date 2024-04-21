@@ -2,12 +2,31 @@ package com.finance_dock.finance_dock.models;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Saida {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 200, nullable = false)
     private String descricao;
+    @Column(nullable = false)
     private Date vencimento;
+    @Column(nullable = false)
     private double valor;
+    @ManyToOne
+    @JoinColumn(name = "tipo_movimentacao_id")
     private TipoMovimentacao tipoMovimentacao;
+    @ManyToOne
+    @JoinColumn(name = "dashboard_id")
+    private Dashboard dashboard;
 
     public Saida() {
     }

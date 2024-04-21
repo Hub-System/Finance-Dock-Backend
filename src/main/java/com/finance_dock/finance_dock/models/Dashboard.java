@@ -2,21 +2,37 @@ package com.finance_dock.finance_dock.models;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
 // Class definition
+@Entity
 public class Dashboard {
     // Instance variables
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToMany(mappedBy = "dashboard")
     private List<Entrada> entradas;
+    @OneToMany(mappedBy = "dashboard")
     private List<Saida> saidas;
-    private Usuario dono; // New attribute
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     // Constructors
     public Dashboard() {
     }
 
-    public Dashboard(List<Entrada> entradas, List<Saida> saidas, Usuario dono) {
-        this.entradas = entradas;
-        this.saidas = saidas;
-        this.dono = dono;
+    public Dashboard(Long id, Usuario usuario) {
+        this.id = id;
+        this.usuario = usuario;
     }
 
     // Getters and setters
@@ -36,12 +52,12 @@ public class Dashboard {
         this.saidas = saidas;
     }
 
-    public Usuario getDono() {
-        return dono;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setDono(Usuario dono) {
-        this.dono = dono;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     // Other methods
@@ -70,5 +86,13 @@ public class Dashboard {
             saldo += saida.getValor();
         }
         return saldo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

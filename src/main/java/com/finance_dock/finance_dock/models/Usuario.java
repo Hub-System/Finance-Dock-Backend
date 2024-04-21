@@ -1,10 +1,26 @@
 package com.finance_dock.finance_dock.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 200, nullable = false)
     private String nome;
+    @Column(length = 200, nullable = false)
     private String email;
+    @Column(length = 20, nullable = false)
     private String senha;
+
+    @OneToOne(mappedBy = "usuario")
+    private Dashboard dashboard;
 
     public Usuario() {
     }
@@ -39,6 +55,14 @@ public class Usuario {
     }
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Dashboard getDashboard() {
+        return dashboard;
+    }
+
+    public void setDashboard(Dashboard dashboard) {
+        this.dashboard = dashboard;
     }
 
     public void usuarioSetSenha(String senha, String repitaSenha) {

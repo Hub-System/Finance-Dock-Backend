@@ -1,8 +1,26 @@
 package com.finance_dock.finance_dock.models;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class TipoMovimentacao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Column(length = 200, nullable = false)
     String nome;
+
+    @OneToMany(mappedBy = "tipoMovimentacao")
+    private List<Entrada> entradas;
+    @OneToMany(mappedBy = "tipoMovimentacao")
+    private List<Saida> saidas;
 
     public TipoMovimentacao(Long id, String nome) {
         this.id = id;
