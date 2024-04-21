@@ -86,4 +86,10 @@ public class Entrada {
     public void setDashboard(Dashboard dashboard) {
         this.dashboard = dashboard;
     }
+
+    @Override
+    public String toString() {
+        return "Entrada [id=" + id + ", descricao=" + descricao + ", valor=" + valor + ", insercao=" + insercao
+                + ", tipoMovimentacao=" + tipoMovimentacao.getNome() + ", dashboard=" + dashboard + "]";
+    }
 }

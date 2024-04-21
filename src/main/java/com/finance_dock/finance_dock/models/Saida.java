@@ -79,5 +79,11 @@ public class Saida {
         this.tipoMovimentacao = tipoMovimentacao;
     }
 
+    @Override
+    public String toString() {
+        return "Saida [id=" + id + ", descricao=" + descricao + ", vencimento=" + vencimento + ", valor=" + valor
+                + ", tipoMovimentacao=" + tipoMovimentacao.getNome() + ", dashboard=" + dashboard + "]";
+    }
+
 }
 

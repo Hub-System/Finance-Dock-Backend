@@ -19,5 +19,5 @@ public class DashboardDTO {
     private Long id;
     private List<EntradaDTO> entradas;
     private List<SaidaDTO> saidas;
-    private Long usuario;
+    private Long usuarioID;
 }
