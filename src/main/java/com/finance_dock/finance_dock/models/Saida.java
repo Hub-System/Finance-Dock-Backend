@@ -31,7 +31,7 @@ public class Saida {
     public Saida() {
     }
 
-    public Saida(Long id, String descricao, Date vencimento, double valor, TipoMovimentacao tipoMovimentacao) {
+    public Saida(Long id, String descricao, double valor, Date vencimento, TipoMovimentacao tipoMovimentacao) {
         this.id = id;
         this.descricao = descricao;
         this.vencimento = vencimento;
@@ -77,6 +77,14 @@ public class Saida {
 
     public void setTipoMovimentacao(TipoMovimentacao tipoMovimentacao) {
         this.tipoMovimentacao = tipoMovimentacao;
+    }
+
+    public Dashboard getDashboard() {
+        return dashboard;
+    }
+
+    public void setDashboard(Dashboard dashboard) {
+        this.dashboard = dashboard;
     }
 
     @Override
