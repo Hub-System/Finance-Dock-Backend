@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class SaidaDTO {
-    private Long id;
     private String descricao;
     private double valor;
     private Date vencimento;
     private Long tipoMovimentacaoId;
     private Long dashboardId;
+    private Long id;
 }

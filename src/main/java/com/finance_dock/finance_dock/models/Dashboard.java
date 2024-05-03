@@ -9,8 +9,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import lombok.ToString;
 
-// Class definition
+@ToString
 @Entity
 public class Dashboard {
     // Instance variables
@@ -25,6 +26,13 @@ public class Dashboard {
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    public Dashboard(Long id, List<Entrada> entradas, List<Saida> saidas, Usuario usuario) {
+        this.id = id;
+        this.entradas = entradas;
+        this.saidas = saidas;
+        this.usuario = usuario;
+    }
 
     // Constructors
     public Dashboard() {

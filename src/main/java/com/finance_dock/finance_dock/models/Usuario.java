@@ -22,6 +22,14 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario")
     private Dashboard dashboard;
 
+    public Usuario(Long id, String nome, String email, String senha, Dashboard dashboard) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.dashboard = dashboard;
+    }
+
     public Usuario() {
     }
 

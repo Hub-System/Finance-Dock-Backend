@@ -4,8 +4,9 @@ import com.finance_dock.finance_dock.dtos.EntradaDTO;
 import com.finance_dock.finance_dock.models.Entrada;
 
 public interface EntradaService {
-    Entrada criarEntrada(EntradaDTO entrada);
-    Entrada buscarEntrada(Long id);
-    Entrada atualizarEntrada(EntradaDTO entrada);
-    void deletarEntrada(Long id);
+    EntradaDTO criarEntrada(EntradaDTO entrada);
+    EntradaDTO buscarEntrada(Long id);
+    EntradaDTO atualizarEntrada(EntradaDTO entrada);
+    EntradaDTO converterParaDTO(Entrada entrada);
+    Entrada converterParaEntity(EntradaDTO entrada);
 }
