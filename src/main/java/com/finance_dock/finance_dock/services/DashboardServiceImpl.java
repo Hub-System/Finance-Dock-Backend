@@ -27,7 +27,8 @@ public class DashboardServiceImpl implements DashboardService{
         Usuario usuario = usuarioRepository.findById(dashboardDTO.getIdUsuario())
             .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
         Dashboard dashboard = new Dashboard();
-        dashboard.setUsuario(usuario);        
+        dashboard.setUsuario(usuario);
+        dashBoardRepository.save(dashboard);     
         return converterParaDTO(dashboard);
     }
 
@@ -51,31 +52,38 @@ public class DashboardServiceImpl implements DashboardService{
     public DashboardDTO converterParaDTO(Dashboard dashboard) {
         List<EntradaDTO> entradasDTO = null;
         List<SaidaDTO> saidasDTO = null;
-        dashboard.getEntradas().forEach(
-            v -> entradasDTO.add(
-                    new EntradaDTO(
-                        v.getDescricao(),
-                        v.getValor(),
-                        v.getInsercao(),
-                        v.getTipoMovimentacao().getId(),
-                        v.getDashboard().getId(),
-                        v.getId()
+
+        if (dashboard.getEntradas() != null) {
+            dashboard.getEntradas().forEach(
+                v -> entradasDTO.add(
+                        new EntradaDTO(
+                            v.getDescricao(),
+                            v.getValor(),
+                            v.getInsercao(),
+                            v.getTipoMovimentacao().getId(),
+                            v.getDashboard().getId(),
+                            v.getId()
+                        )
                     )
-                )
-            
-        );
-        dashboard.getSaidas().forEach(
-            v -> saidasDTO.add(
-                    new SaidaDTO(
-                        v.getDescricao(),
-                        v.getValor(),
-                        v.getVencimento(),
-                        v.getTipoMovimentacao().getId(),
-                        v.getDashboard().getId(),
-                        v.getId()
+                
+            );
+        }
+
+        if (dashboard.getSaidas() != null) {
+            dashboard.getSaidas().forEach(
+                v -> saidasDTO.add(
+                        new SaidaDTO(
+                            v.getDescricao(),
+                            v.getValor(),
+                            v.getVencimento(),
+                            v.getTipoMovimentacao().getId(),
+                            v.getDashboard().getId(),
+                            v.getId()
+                        )
                     )
-                )
-        );
+            );
+        }
+
         return new DashboardDTO(
                     dashboard.getId(),
                     entradasDTO, 

@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService{
     private final UsuarioRepository usuarioRepository;
-    private final DashBoardRepository dashBoardRepository;
     
     @Override
     @Transactional
@@ -57,20 +56,17 @@ public class UsuarioServiceImpl implements UsuarioService{
             usuario.getId(),
             usuario.getNome(),
             usuario.getEmail(),
-            usuario.getSenha(),
-            usuario.getDashboard().getId()
+            usuario.getSenha()
         );
     }
 
     @Override
     public Usuario converterParaEntity(UsuarioDTO usuario) {
-        Dashboard dashboard = dashBoardRepository.findById(usuario.getDashboardId()).get();
         return new Usuario(
             usuario.getId(),
             usuario.getNome(),
             usuario.getEmail(),
-            usuario.getSenha(),
-            dashboard
+            usuario.getSenha()
         );
     }
     

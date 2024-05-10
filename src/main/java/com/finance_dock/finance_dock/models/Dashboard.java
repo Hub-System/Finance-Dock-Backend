@@ -70,28 +70,28 @@ public class Dashboard {
 
     // Other methods
     public double getSaldo() {
-        double saldo = 0;
-        for (Entrada entrada : entradas) {
-            saldo += entrada.getValor();
-        }
-        for (Saida saida : saidas) {
-            saldo -= saida.getValor();
-        }
-        return saldo;
+        double saidas = getSaldoSaidas();
+        double entradas = getSaldoEntradas();
+
+        return (entradas - saidas);
     }
 
     public double getSaldoEntradas() {
         double saldo = 0;
-        for (Entrada entrada : entradas) {
-            saldo += entrada.getValor();
+        if (entradas != null) {
+            for (Entrada entrada : entradas) {
+                saldo += entrada.getValor();
+            }
         }
         return saldo;
     }
 
     public double getSaldoSaidas() {
         double saldo = 0;
-        for (Saida saida : saidas) {
-            saldo += saida.getValor();
+        if (saidas != null) {
+            for (Saida saida : saidas) {
+                saldo -= saida.getValor();
+            }
         }
         return saldo;
     }
