@@ -3,8 +3,10 @@ package com.finance_dock.finance_dock.services;
 import org.springframework.stereotype.Service;
 
 import com.finance_dock.finance_dock.dtos.SaidaDTO;
+import com.finance_dock.finance_dock.models.Dashboard;
 import com.finance_dock.finance_dock.models.Saida;
 import com.finance_dock.finance_dock.models.TipoMovimentacao;
+import com.finance_dock.finance_dock.repositories.DashBoardRepository;
 import com.finance_dock.finance_dock.repositories.SaidaRepository;
 import com.finance_dock.finance_dock.repositories.TipoMovimentacaoRepository;
 
@@ -16,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class SaidaServiceImpl implements SaidaService {
     private final TipoMovimentacaoRepository tipoMovimentacaoRepository;
     private final SaidaRepository saidaRepository;
+    private final DashBoardRepository dashBoardRepository;
 
     @Override
     @Transactional 
@@ -55,13 +58,17 @@ public class SaidaServiceImpl implements SaidaService {
         TipoMovimentacao tipoMovimentacao = tipoMovimentacaoRepository.findById(
             saida.getTipoMovimentacaoId()
         ).orElseThrow(() -> new RuntimeException("Tipo de movimentação não encontrada"));
-        return new Saida(
+        Dashboard dashboard = dashBoardRepository.findById(saida.getDashboardId())
+        .orElseThrow(() -> new RuntimeException("Dashboard não encontrada"));
+        Saida saidaEntity = new Saida(
             saida.getId(),
             saida.getDescricao(),
             saida.getValor(),
             saida.getVencimento(),
             tipoMovimentacao
         );
+        saidaEntity.setDashboard(dashboard);
+        return saidaEntity;
     }
     
 }

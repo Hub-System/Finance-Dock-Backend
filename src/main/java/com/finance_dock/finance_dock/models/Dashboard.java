@@ -15,6 +15,7 @@ import lombok.ToString;
 @Entity
 public class Dashboard {
     // Instance variables
+    // ods 4
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

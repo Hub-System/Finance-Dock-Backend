@@ -3,8 +3,10 @@ package com.finance_dock.finance_dock.services;
 import org.springframework.stereotype.Service;
 
 import com.finance_dock.finance_dock.dtos.EntradaDTO;
+import com.finance_dock.finance_dock.models.Dashboard;
 import com.finance_dock.finance_dock.models.Entrada;
 import com.finance_dock.finance_dock.models.TipoMovimentacao;
+import com.finance_dock.finance_dock.repositories.DashBoardRepository;
 import com.finance_dock.finance_dock.repositories.EntradaRepository;
 import com.finance_dock.finance_dock.repositories.TipoMovimentacaoRepository;
 
@@ -14,8 +16,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class EntradaServiceImpl implements EntradaService {
-    EntradaRepository entradaRepository;
-    TipoMovimentacaoRepository tipoMovimentacaoRepository;
+    private final EntradaRepository entradaRepository;
+    private final TipoMovimentacaoRepository tipoMovimentacaoRepository;
+    private final DashBoardRepository dashBoardRepository;
 
     @Override
     @Transactional
@@ -56,12 +59,16 @@ public class EntradaServiceImpl implements EntradaService {
         TipoMovimentacao tipoMovimentacao = tipoMovimentacaoRepository.findById(
             entrada.getTipoMovimentacaoId()
         ).orElseThrow(() -> new RuntimeException("Tipo de movimentação não encontrada"));
-        return new Entrada(
+        Dashboard dashboard = dashBoardRepository.findById(entrada.getDashboardId())
+        .orElseThrow(() -> new RuntimeException("Dashboard não encontrada"));
+        Entrada entradaEntity = new Entrada(
             entrada.getId(),
             entrada.getDescricao(),
             entrada.getValor(),
             entrada.getInsercao(),
             tipoMovimentacao
         );
+        entradaEntity.setDashboard(dashboard);
+        return entradaEntity;
     }
 }
