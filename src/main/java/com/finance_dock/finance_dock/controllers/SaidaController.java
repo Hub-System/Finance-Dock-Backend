@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.finance_dock.finance_dock.dtos.SaidaDTO;
 import com.finance_dock.finance_dock.services.SaidaService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/saidas")
 public class SaidaController {
-
-  @Autowired
-  private SaidaService saidaService;
+  private final SaidaService saidaService;
 
   @PostMapping
   public void criarSaida(@RequestBody SaidaDTO saidaDTO) {
@@ -28,7 +30,7 @@ public class SaidaController {
     return saidaService.buscarSaida(id);
   }
 
-  @PostMapping("/{id}")
+  @PutMapping()
   public void atualizarSaida(@RequestBody SaidaDTO saidaDTO) {
     saidaService.atualizarSaida(saidaDTO);
   }

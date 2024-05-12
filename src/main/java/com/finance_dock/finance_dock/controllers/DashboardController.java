@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.finance_dock.finance_dock.dtos.DashboardDTO;
 import com.finance_dock.finance_dock.services.DashboardService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/dashboard")
+@RequiredArgsConstructor
 public class DashboardController {
-
-  @Autowired
-  private DashboardService dashboardService;
+  private final DashboardService dashboardService;
 
   @PostMapping
   public void criarDashboard(@RequestBody DashboardDTO dashboardDTO) {
@@ -28,7 +30,7 @@ public class DashboardController {
     return dashboardService.buscarDashboard(id);
   }
 
-  @PostMapping("/{id}")
+  @PutMapping()
   public void atualizarDashboard(@RequestBody DashboardDTO dashboardDTO) {
     dashboardService.atualizarDashboard(dashboardDTO);
   }
