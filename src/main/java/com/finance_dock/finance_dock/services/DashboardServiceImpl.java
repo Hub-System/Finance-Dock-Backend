@@ -8,6 +8,8 @@ import com.finance_dock.finance_dock.dtos.DashboardDTO;
 import com.finance_dock.finance_dock.dtos.EntradaDTO;
 import com.finance_dock.finance_dock.dtos.SaidaDTO;
 import com.finance_dock.finance_dock.models.Dashboard;
+import com.finance_dock.finance_dock.models.Entrada;
+import com.finance_dock.finance_dock.models.Saida;
 import com.finance_dock.finance_dock.models.Usuario;
 import com.finance_dock.finance_dock.repositories.DashBoardRepository;
 import com.finance_dock.finance_dock.repositories.UsuarioRepository;
@@ -96,8 +98,30 @@ public class DashboardServiceImpl implements DashboardService{
 
     @Override
     public Dashboard converterParaEntity(DashboardDTO dashboard) {
-        return dashBoardRepository.findById(dashboard.getId())
-        .orElseThrow(() -> new RuntimeException("Dashboard não encontrado"));
+        EntradaServiceImpl entradaService = null;
+        SaidaService saidaService = null;
+        List<Entrada> entradas = null;
+        List<Saida> saidas = null;
+
+         if (dashboard.getEntradas().isEmpty()) {
+            dashboard.getEntradas().forEach(entrada -> {
+                entradas.add(entradaService.converterParaEntity(entrada));
+            });
+        }
+
+        if (dashboard.getSaidas().isEmpty()) {
+            dashboard.getSaidas().forEach(saida -> {
+                saidas.add(saidaService.converterParaEntity(saida));
+            });
+        }
+    
+        return new Dashboard(
+            dashboard.getId(),
+            entradas,
+            saidas,
+            usuarioRepository.findById(dashboard.getIdUsuario())
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrada"))
+        );
     }
 
 }
