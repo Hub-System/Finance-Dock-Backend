@@ -1,5 +1,6 @@
 package com.finance_dock.finance_dock.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -52,8 +53,8 @@ public class DashboardServiceImpl implements DashboardService{
 
     @Override
     public DashboardDTO converterParaDTO(Dashboard dashboard) {
-        List<EntradaDTO> entradasDTO = null;
-        List<SaidaDTO> saidasDTO = null;
+        List<EntradaDTO> entradasDTO = new ArrayList<>();
+        List<SaidaDTO> saidasDTO = new ArrayList<>();
 
         if (dashboard.getEntradas() != null) {
             dashboard.getEntradas().forEach(
@@ -73,16 +74,19 @@ public class DashboardServiceImpl implements DashboardService{
 
         if (dashboard.getSaidas() != null) {
             dashboard.getSaidas().forEach(
-                v -> saidasDTO.add(
-                        new SaidaDTO(
-                            v.getDescricao(),
-                            v.getValor(),
-                            v.getVencimento(),
-                            v.getTipoMovimentacao().getId(),
-                            v.getDashboard().getId(),
-                            v.getId()
-                        )
-                    )
+                v -> {
+                    if (v.getId() != null){
+                        saidasDTO.add(
+                            new SaidaDTO(
+                                v.getDescricao(),
+                                v.getValor(),
+                                v.getVencimento(),
+                                v.getTipoMovimentacao().getId(),
+                                v.getDashboard().getId(),
+                                v.getId()
+                            )
+                        );
+                }}
             );
         }
 
@@ -103,13 +107,15 @@ public class DashboardServiceImpl implements DashboardService{
         List<Entrada> entradas = null;
         List<Saida> saidas = null;
 
-         if (dashboard.getEntradas().isEmpty()) {
+        System.out.println("------------------------------------");
+
+         if (dashboard.getEntradas().size() > 0) {
             dashboard.getEntradas().forEach(entrada -> {
                 entradas.add(entradaService.converterParaEntity(entrada));
             });
         }
 
-        if (dashboard.getSaidas().isEmpty()) {
+        if (dashboard.getSaidas().size() > 0) {
             dashboard.getSaidas().forEach(saida -> {
                 saidas.add(saidaService.converterParaEntity(saida));
             });
