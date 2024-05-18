@@ -43,11 +43,12 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public void logarUsuario(String email, String senha) {
+    public UsuarioDTO logarUsuario(String email, String senha) {
         Usuario usuario = usuarioRepository.findByEmailAndSenha(email, senha);
         if (usuario.getId() == null) {
             throw new IllegalArgumentException("Usuário/Senha não encontrados");
         }
+        return converterParaDTO(usuario);
     }
 
     @Override

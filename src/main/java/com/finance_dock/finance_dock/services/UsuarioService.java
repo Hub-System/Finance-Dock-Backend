@@ -7,7 +7,7 @@ public interface UsuarioService {
     void criarUsuario(UsuarioDTO usuario);
     UsuarioDTO buscarUsuario(Long id);
     void atualizarUsuario(UsuarioDTO usuario);
-    void logarUsuario(String email, String senha);
+    UsuarioDTO logarUsuario(String email, String senha);
     UsuarioDTO converterParaDTO(Usuario usuario);
     Usuario converterParaEntity(UsuarioDTO usuario);
 }

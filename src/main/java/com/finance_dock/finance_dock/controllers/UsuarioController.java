@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.finance_dock.finance_dock.dtos.UsuarioDTO;
+import com.finance_dock.finance_dock.dtos.UsuarioLogarDTO;
 import com.finance_dock.finance_dock.services.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,11 @@ public class UsuarioController {
   @PostMapping
   public void criarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
     usuarioService.criarUsuario(usuarioDTO);
+  }
+
+  @PostMapping("/login")
+  public UsuarioDTO logarUsuario(@RequestBody UsuarioLogarDTO usuarioDTO) {
+    return usuarioService.logarUsuario(usuarioDTO.getEmail(), usuarioDTO.getSenha());
   }
 
   @GetMapping("/{id}")
