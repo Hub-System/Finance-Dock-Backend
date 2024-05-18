@@ -1,6 +1,7 @@
 com\finance_dock\finance_dock\services\SaidaService.class
 com\finance_dock\finance_dock\controllers\SaidaController.class
 com\finance_dock\finance_dock\repositories\EntradaRepository.class
+com\finance_dock\finance_dock\configurations\WebConfig.class
 com\finance_dock\finance_dock\repositories\TipoMovimentacaoRepository.class
 com\finance_dock\finance_dock\models\Saida.class
 com\finance_dock\finance_dock\services\DashboardService.class
