@@ -1,5 +1,4 @@
 com\finance_dock\finance_dock\services\SaidaService.class
-com\finance_dock\finance_dock\dtos\UsuarioLogarDTO.class
 com\finance_dock\finance_dock\controllers\SaidaController.class
 com\finance_dock\finance_dock\services\UsuarioService.class
 com\finance_dock\finance_dock\repositories\EntradaRepository.class
@@ -15,7 +14,6 @@ com\finance_dock\finance_dock\services\DashboardServiceImpl.class
 com\finance_dock\finance_dock\models\Dashboard.class
 com\finance_dock\finance_dock\dtos\SaidaDTO.class
 com\finance_dock\finance_dock\dtos\TipoMovimentacaoDTO.class
-com\finance_dock\finance_dock\dtos\UsuarioLogarDTO$UsuarioLogarDTOBuilder.class
 com\finance_dock\finance_dock\controllers\EntradaController.class
 com\finance_dock\finance_dock\models\Entrada.class
 com\finance_dock\finance_dock\controllers\TipoMovimentacaoController.class
@@ -30,7 +28,6 @@ com\finance_dock\finance_dock\services\TipoMovimentacaoService.class
 com\finance_dock\finance_dock\services\EntradaService.class
 com\finance_dock\finance_dock\services\SaidaServiceImpl.class
 com\finance_dock\finance_dock\controllers\DashboardController.class
-com\finance_dock\finance_dock\controllers\UsuarioController.class
 com\finance_dock\finance_dock\dtos\TipoMovimentacaoDTO$TipoMovimentacaoDTOBuilder.class
 com\finance_dock\finance_dock\dtos\DashboardUpdate$DashboardUpdateBuilder.class
 com\finance_dock\finance_dock\dtos\DashboardUpdate.class

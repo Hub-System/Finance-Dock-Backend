@@ -20,9 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Transactional
     public void criarUsuario(UsuarioDTO usuario) {
         Usuario novoUsuario = new Usuario();
-        novoUsuario.setNome(usuario.getNome());
-        novoUsuario.setEmail(usuario.getEmail());
-        novoUsuario.setSenha(usuario.getSenha());
+        novoUsuario.setFirebaseId(usuario.getFirebaseId());
         usuarioRepository.save(novoUsuario);
     }
 
@@ -30,44 +28,21 @@ public class UsuarioServiceImpl implements UsuarioService{
     public UsuarioDTO buscarUsuario(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
-        return converterParaDTO(usuario);
-    }
-
-    @Override
-    @Transactional
-    public void atualizarUsuario(UsuarioDTO usuario) {
-        usuarioRepository.findById(usuario.getId())
-            .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
-        Usuario usuarioAtualizado = converterParaEntity(usuario);
-        usuarioRepository.save(usuarioAtualizado);
-    }
-
-    @Override
-    public UsuarioDTO logarUsuario(String email, String senha) {
-        Usuario usuario = usuarioRepository.findByEmailAndSenha(email, senha);
-        if (usuario.getId() == null) {
-            throw new IllegalArgumentException("Usuário/Senha não encontrados");
-        }
-        return converterParaDTO(usuario);
-    }
-
-    @Override
-    public UsuarioDTO converterParaDTO(Usuario usuario) {
         return new UsuarioDTO(
             usuario.getId(),
-            usuario.getNome(),
-            usuario.getEmail(),
-            usuario.getSenha()
+            usuario.getFirebaseId()
         );
     }
 
     @Override
-    public Usuario converterParaEntity(UsuarioDTO usuario) {
-        return new Usuario(
+    public UsuarioDTO logarUsuario(String firebaseId) {
+        Usuario usuario = usuarioRepository.findByFirebaseId(firebaseId);
+        if (usuario.getFirebaseId().isEmpty()) {
+            throw new IllegalArgumentException("Usuário não encontrado");
+        }
+        return new UsuarioDTO(
             usuario.getId(),
-            usuario.getNome(),
-            usuario.getEmail(),
-            usuario.getSenha()
+            usuario.getFirebaseId()
         );
     }
     

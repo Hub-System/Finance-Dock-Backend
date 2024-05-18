@@ -13,31 +13,23 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 200, nullable = false)
-    private String nome;
-    @Column(length = 200, nullable = false)
-    private String email;
-    @Column(length = 20, nullable = false)
-    private String senha;
+    private String firebaseId;
 
     @OneToOne(mappedBy = "usuario")
     private Dashboard dashboard;
 
-    public Usuario(Long id, String nome, String email, String senha, Dashboard dashboard) {
+    public Usuario(Long id, String firebaseId, Dashboard dashboard) {
         this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+        this.firebaseId = firebaseId;
         this.dashboard = dashboard;
     }
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nome, String email, String senha) {
+    public Usuario(Long id, String firebaseId) {
         this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+        this.firebaseId = firebaseId;
     }
     
     public Long getId() {
@@ -46,23 +38,11 @@ public class Usuario {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getNome() {
-        return nome;
+    public String getFirebaseId() {
+        return firebaseId;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getSenha() {
-        return senha;
-    }
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
     }
 
     public Dashboard getDashboard() {
@@ -73,30 +53,9 @@ public class Usuario {
         this.dashboard = dashboard;
     }
 
-    public void usuarioSetSenha(String senha, String repitaSenha) {
-        if (!senha.equals(repitaSenha)) 
-            throw new IllegalArgumentException("Senha e repetição de senha não conferem");
-         else if(senha.length() < 8)
-            throw new IllegalArgumentException("Senha deve ter no mínimo 8 caracteres");
-        
-        setSenha(senha);
-    }
-    
-    public void trocarSenha(String senhaAtual, String novaSenha, String repitaNovaSenha) {
-        if (senhaAtual.equals(this.senha)) 
-            throw new IllegalArgumentException("Senha atual inválida");
-        
-        if (!novaSenha.equals(repitaNovaSenha)) 
-            throw new IllegalArgumentException("Nova senha e repetição de senha não conferem");
-         else if(novaSenha.length() < 8)
-            throw new IllegalArgumentException("Senha deve ter no mínimo 8 caracteres");
-        
-        setSenha(novaSenha);
-    }
-
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + "]";
+        return "Usuario [id=" + id + ", firebaseId=" + firebaseId + "]";
     }
 
 }
