@@ -24,8 +24,8 @@ public class DashboardServiceImpl implements DashboardService{
     @Transactional
     @Override
     public DashboardDTO criarDashboard(DashboardDTO dashboardDTO) {
-        Dashboard dashboard = new Dashboard();
-        dashBoardRepository.save(dashboard);     
+        Dashboard dashboard = converterParaEntity(dashboardDTO);
+        dashboard = dashBoardRepository.save(dashboard);     
         return converterParaDTO(dashboard);
     }
 
@@ -117,6 +117,15 @@ public class DashboardServiceImpl implements DashboardService{
             saidas,
             dashboard.getFirebaseId()
         );
+    }
+
+    @Override
+    public DashboardDTO buscarDashboardFirebaseId(String firebaseId) {
+        DashboardDTO dashboardDTO = converterParaDTO(dashBoardRepository.findByFirebaseId(firebaseId));
+        if (dashboardDTO.getFirebaseId().isEmpty()) {
+            throw new IllegalArgumentException("Não foi encontrado dashboard para este usuario");
+        }
+        return dashboardDTO;
     }
 
 }

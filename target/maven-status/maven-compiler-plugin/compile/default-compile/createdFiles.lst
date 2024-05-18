@@ -7,6 +7,7 @@ com\finance_dock\finance_dock\services\DashboardService.class
 com\finance_dock\finance_dock\FinanceDockApplication.class
 com\finance_dock\finance_dock\dtos\DashboardDTO$DashboardDTOBuilder.class
 com\finance_dock\finance_dock\dtos\EntradaDTO$EntradaDTOBuilder.class
+com\finance_dock\finance_dock\services\DashboardServiceImpl.class
 com\finance_dock\finance_dock\models\Dashboard.class
 com\finance_dock\finance_dock\dtos\SaidaDTO.class
 com\finance_dock\finance_dock\dtos\TipoMovimentacaoDTO.class

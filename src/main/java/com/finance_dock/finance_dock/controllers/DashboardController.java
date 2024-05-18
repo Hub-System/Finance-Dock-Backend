@@ -30,6 +30,11 @@ public class DashboardController {
     return dashboardService.buscarDashboard(id);
   }
 
+  @GetMapping("/usuario/{id}")
+  public DashboardDTO buscarDashboardPorFirebaseId(@PathVariable String id) {
+    return dashboardService.buscarDashboardFirebaseId(id);
+  }
+
   @PutMapping()
   public void atualizarDashboard(@RequestBody DashboardDTO dashboardDTO) {
     dashboardService.atualizarDashboard(dashboardDTO);
