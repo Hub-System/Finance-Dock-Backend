@@ -2,6 +2,7 @@ package com.finance_dock.finance_dock.models;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,29 +20,27 @@ public class Dashboard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 200, nullable = false)
+    private String firebaseId;
     @OneToMany(mappedBy = "dashboard")
     private List<Entrada> entradas;
     @OneToMany(mappedBy = "dashboard")
     private List<Saida> saidas;
 
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    public Dashboard(Long id, List<Entrada> entradas, List<Saida> saidas, Usuario usuario) {
+    public Dashboard(Long id, List<Entrada> entradas, List<Saida> saidas, String firebaseId) {
         this.id = id;
         this.entradas = entradas;
         this.saidas = saidas;
-        this.usuario = usuario;
+        this.firebaseId = firebaseId;
     }
 
     // Constructors
     public Dashboard() {
     }
 
-    public Dashboard(Long id, Usuario usuario) {
+    public Dashboard(Long id, String firebaseId) {
         this.id = id;
-        this.usuario = usuario;
+        this.firebaseId = firebaseId;
     }
 
     // Getters and setters
@@ -61,12 +60,12 @@ public class Dashboard {
         this.saidas = saidas;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getFirebaseId() {
+        return firebaseId;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
     }
 
     // Other methods

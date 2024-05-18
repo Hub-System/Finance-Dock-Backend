@@ -11,9 +11,7 @@ import com.finance_dock.finance_dock.dtos.SaidaDTO;
 import com.finance_dock.finance_dock.models.Dashboard;
 import com.finance_dock.finance_dock.models.Entrada;
 import com.finance_dock.finance_dock.models.Saida;
-import com.finance_dock.finance_dock.models.Usuario;
 import com.finance_dock.finance_dock.repositories.DashBoardRepository;
-import com.finance_dock.finance_dock.repositories.UsuarioRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,16 +19,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class DashboardServiceImpl implements DashboardService{
-    private final UsuarioRepository usuarioRepository;
     private final DashBoardRepository dashBoardRepository;
     
     @Transactional
     @Override
     public DashboardDTO criarDashboard(DashboardDTO dashboardDTO) {
-        Usuario usuario = usuarioRepository.findById(dashboardDTO.getIdUsuario())
-            .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
         Dashboard dashboard = new Dashboard();
-        dashboard.setUsuario(usuario);
         dashBoardRepository.save(dashboard);     
         return converterParaDTO(dashboard);
     }
@@ -45,8 +39,6 @@ public class DashboardServiceImpl implements DashboardService{
     @Transactional
     @Override
     public void atualizarDashboard(DashboardDTO dashboard) {
-        usuarioRepository.findById(dashboard.getIdUsuario())
-            .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
         Dashboard dash = converterParaEntity(dashboard);
         dashBoardRepository.save(dash);
     }
@@ -97,7 +89,7 @@ public class DashboardServiceImpl implements DashboardService{
                     dashboard.getSaldo(), 
                     dashboard.getSaldoEntradas(), 
                     dashboard.getSaldoSaidas(), 
-                    dashboard.getUsuario().getId());
+                    dashboard.getFirebaseId());
     }
 
     @Override
@@ -106,8 +98,6 @@ public class DashboardServiceImpl implements DashboardService{
         SaidaService saidaService = null;
         List<Entrada> entradas = null;
         List<Saida> saidas = null;
-
-        System.out.println("------------------------------------");
 
          if (dashboard.getEntradas().size() > 0) {
             dashboard.getEntradas().forEach(entrada -> {
@@ -125,8 +115,7 @@ public class DashboardServiceImpl implements DashboardService{
             dashboard.getId(),
             entradas,
             saidas,
-            usuarioRepository.findById(dashboard.getIdUsuario())
-            .orElseThrow(() -> new RuntimeException("Usuário não encontrada"))
+            dashboard.getFirebaseId()
         );
     }
 

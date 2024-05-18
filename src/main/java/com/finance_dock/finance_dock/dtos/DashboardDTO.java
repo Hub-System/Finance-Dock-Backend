@@ -18,5 +18,5 @@ public class DashboardDTO {
     private double saldo;
     private double entradaTotal;
     private double saidaTotal;
-    private Long idUsuario;
+    private String firebaseId;
 }

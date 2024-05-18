@@ -1,16 +1,12 @@
 com\finance_dock\finance_dock\services\SaidaService.class
 com\finance_dock\finance_dock\controllers\SaidaController.class
-com\finance_dock\finance_dock\services\UsuarioService.class
 com\finance_dock\finance_dock\repositories\EntradaRepository.class
-com\finance_dock\finance_dock\services\UsuarioServiceImpl.class
 com\finance_dock\finance_dock\repositories\TipoMovimentacaoRepository.class
 com\finance_dock\finance_dock\models\Saida.class
 com\finance_dock\finance_dock\services\DashboardService.class
-com\finance_dock\finance_dock\dtos\UsuarioDTO.class
 com\finance_dock\finance_dock\FinanceDockApplication.class
 com\finance_dock\finance_dock\dtos\DashboardDTO$DashboardDTOBuilder.class
 com\finance_dock\finance_dock\dtos\EntradaDTO$EntradaDTOBuilder.class
-com\finance_dock\finance_dock\services\DashboardServiceImpl.class
 com\finance_dock\finance_dock\models\Dashboard.class
 com\finance_dock\finance_dock\dtos\SaidaDTO.class
 com\finance_dock\finance_dock\dtos\TipoMovimentacaoDTO.class
@@ -18,10 +14,8 @@ com\finance_dock\finance_dock\controllers\EntradaController.class
 com\finance_dock\finance_dock\models\Entrada.class
 com\finance_dock\finance_dock\controllers\TipoMovimentacaoController.class
 com\finance_dock\finance_dock\repositories\DashBoardRepository.class
-com\finance_dock\finance_dock\dtos\UsuarioDTO$UsuarioDTOBuilder.class
 com\finance_dock\finance_dock\services\EntradaServiceImpl.class
 com\finance_dock\finance_dock\dtos\SaidaDTO$SaidaDTOBuilder.class
-com\finance_dock\finance_dock\repositories\UsuarioRepository.class
 com\finance_dock\finance_dock\models\TipoMovimentacao.class
 com\finance_dock\finance_dock\dtos\DashboardDTO.class
 com\finance_dock\finance_dock\services\TipoMovimentacaoService.class
@@ -32,6 +26,5 @@ com\finance_dock\finance_dock\dtos\TipoMovimentacaoDTO$TipoMovimentacaoDTOBuilde
 com\finance_dock\finance_dock\dtos\DashboardUpdate$DashboardUpdateBuilder.class
 com\finance_dock\finance_dock\dtos\DashboardUpdate.class
 com\finance_dock\finance_dock\dtos\EntradaDTO.class
-com\finance_dock\finance_dock\models\Usuario.class
 com\finance_dock\finance_dock\repositories\SaidaRepository.class
 com\finance_dock\finance_dock\services\TipoMovimentacaoServiceImpl.class
