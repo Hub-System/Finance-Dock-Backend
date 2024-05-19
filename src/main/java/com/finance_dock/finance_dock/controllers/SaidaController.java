@@ -1,6 +1,7 @@
 package com.finance_dock.finance_dock.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,5 +34,10 @@ public class SaidaController {
   @PutMapping()
   public void atualizarSaida(@RequestBody SaidaDTO saidaDTO) {
     saidaService.atualizarSaida(saidaDTO);
+  }
+
+  @DeleteMapping("/{id}")
+  public void deletarSaida(@PathVariable Long id) {
+    saidaService.deletarSaida(id);
   }
 }

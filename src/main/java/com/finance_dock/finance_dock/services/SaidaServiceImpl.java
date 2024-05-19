@@ -29,6 +29,12 @@ public class SaidaServiceImpl implements SaidaService {
     }
 
     @Override
+    @Transactional 
+    public void deletarSaida(Long id) {
+        saidaRepository.deleteById(id);
+    }
+
+    @Override
     public SaidaDTO buscarSaida(Long id) {
         return converterParaDTO(
             saidaRepository.findById(id)

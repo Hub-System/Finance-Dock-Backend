@@ -9,4 +9,5 @@ public interface EntradaService {
     void atualizarEntrada(EntradaDTO entrada);
     EntradaDTO converterParaDTO(Entrada entrada);
     Entrada converterParaEntity(EntradaDTO entrada);
+    void deletarEntrada(Long id);
 }

@@ -9,4 +9,5 @@ public interface SaidaService {
     void atualizarSaida(SaidaDTO saida);
     SaidaDTO converterParaDTO(Saida saida);
     Saida converterParaEntity(SaidaDTO saida);
+    void deletarSaida(Long id);
 }

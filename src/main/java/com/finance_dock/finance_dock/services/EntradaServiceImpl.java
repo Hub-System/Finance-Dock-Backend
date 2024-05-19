@@ -28,6 +28,12 @@ public class EntradaServiceImpl implements EntradaService {
     }
 
     @Override
+    @Transactional 
+    public void deletarEntrada(Long id) {
+        entradaRepository.deleteById(id);
+    }
+
+    @Override
     public EntradaDTO buscarEntrada(Long id) {
         return converterParaDTO(
             entradaRepository.findById(id)
