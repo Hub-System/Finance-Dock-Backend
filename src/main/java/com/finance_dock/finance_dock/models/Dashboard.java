@@ -90,7 +90,7 @@ public class Dashboard {
         double saldo = 0;
         if (saidas != null) {
             for (Saida saida : saidas) {
-                saldo -= saida.getValor();
+                saldo += saida.getValor();
             }
         }
         return saldo;

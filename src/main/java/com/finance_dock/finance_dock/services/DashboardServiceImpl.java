@@ -12,6 +12,8 @@ import com.finance_dock.finance_dock.models.Dashboard;
 import com.finance_dock.finance_dock.models.Entrada;
 import com.finance_dock.finance_dock.models.Saida;
 import com.finance_dock.finance_dock.repositories.DashBoardRepository;
+import com.finance_dock.finance_dock.repositories.EntradaRepository;
+import com.finance_dock.finance_dock.repositories.SaidaRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DashboardServiceImpl implements DashboardService{
     private final DashBoardRepository dashBoardRepository;
+    private final EntradaServiceImpl entradaService;
+    private final SaidaServiceImpl saidaService;
     
     @Transactional
     @Override
@@ -94,10 +98,8 @@ public class DashboardServiceImpl implements DashboardService{
 
     @Override
     public Dashboard converterParaEntity(DashboardDTO dashboard) {
-        EntradaServiceImpl entradaService = null;
-        SaidaService saidaService = null;
-        List<Entrada> entradas = null;
-        List<Saida> saidas = null;
+        List<Entrada> entradas = new ArrayList<>();
+        List<Saida> saidas = new ArrayList<>();
 
          if (dashboard.getEntradas().size() > 0) {
             dashboard.getEntradas().forEach(entrada -> {
